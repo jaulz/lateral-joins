@@ -1,17 +1,17 @@
 {
-    "name": "sensorium/lateral-joins",
+    "name": "jaulz/lateral-joins",
     "description": "Extends Laravel query builder with lateral joins",
-    "homepage": "https://www.sensorium69.nl",
+    "homepage": "https://www.hundeloh-consulting.ch",
     "license": "MIT",
     "authors": [
         {
-            "name": "Christiaan Ras",
-            "email": "christiaan.ras@sensorium69.nl",
+            "name": "Julian Hundeloh",
+            "email": "julian@hundeloh-consulting.ch",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": ">=7.2"
+        "php": ">=8.0"
     },
     "require-dev": {
         "orchestra/testbench": "^4.0|^5.0|^6.0",
@@ -32,7 +32,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Sensorium\\LateralJoins\\DatabaseServiceProvider"
+                "Jaulz\\LateralJoins\\DatabaseServiceProvider"
             ]
         }
     }
