@@ -1,9 +1,9 @@
 <?php
 
-namespace Sensorium\LateralJoins\Query;
+namespace Jaulz\LateralJoins\Query;
 
 use Illuminate\Database\Query\Expression;
-use Sensorium\LateralJoins\LateralJoinClause;
+use Jaulz\LateralJoins\LateralJoinClause;
 
 trait BuildsLateralJoins
 {

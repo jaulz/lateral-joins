@@ -1,9 +1,9 @@
 <?php
 
-namespace Sensorium\LateralJoins\Grammars;
+namespace Jaulz\LateralJoins\Grammars;
 
 use Illuminate\Database\Query\Builder;
-use Sensorium\LateralJoins\LateralJoinClause;
+use Jaulz\LateralJoins\LateralJoinClause;
 
 trait CompilesLateralJoins
 {

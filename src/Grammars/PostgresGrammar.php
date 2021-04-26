@@ -1,6 +1,6 @@
 <?php
 
-namespace Sensorium\LateralJoins\Grammars;
+namespace Jaulz\LateralJoins\Grammars;
 
 use Illuminate\Database\Query\Grammars\PostgresGrammar as Base;
 

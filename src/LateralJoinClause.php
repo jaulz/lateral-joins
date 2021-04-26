@@ -1,6 +1,6 @@
 <?php
 
-namespace Sensorium\LateralJoins;
+namespace Jaulz\LateralJoins;
 
 use Closure;
 use Illuminate\Database\Query\Builder;

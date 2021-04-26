@@ -1,7 +1,7 @@
 # Introduction
 This Laravel extension adds support for lateral joins to Laravel query builder.
 
-Supports Laravel 5.5+.
+Supports Laravel 8.0+.
 
 ## Compatibility
 
@@ -13,10 +13,10 @@ Supports Laravel 5.5+.
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/sensorium-bv/lateral-joins"
+            "url": "https://github.com/jaulz/lateral-joins"
         }
     ],
-* composer require sensorium/lateral-joins:dev-master
+* composer require jaulz/lateral-joins:dev-master
 
 ## Usage
 

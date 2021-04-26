@@ -1,9 +1,9 @@
 <?php
 
-namespace Sensorium\LateralJoins;
+namespace Jaulz\LateralJoins;
 
 use Illuminate\Database\PostgresConnection;
-use Sensorium\LateralJoins\Query\Builder;
+use Jaulz\LateralJoins\Query\Builder;
 
 class Connection extends PostgresConnection {
     //@Override

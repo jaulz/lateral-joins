@@ -1,6 +1,6 @@
 <?php
 
-namespace Sensorium\LateralJoins\Query;
+namespace Jaulz\LateralJoins\Query;
 
 use Illuminate\Database\Query\Builder as Base;
 
