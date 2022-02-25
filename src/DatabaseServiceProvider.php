@@ -4,12 +4,12 @@ namespace Jaulz\LateralJoins;
 
 use Illuminate\Database\Connectors\ConnectionFactory;
 use Illuminate\Database\DatabaseManager;
-use Illuminate\Database\DatabaseServiceProvider as BaseProvider;
+use Illuminate\Database\DatabaseTransactionsManager;
 use Illuminate\Database\Schema\Grammars\PostgresGrammar as SchemaGrammar;
 use Jaulz\LateralJoins\Connection;
 use Jaulz\LateralJoins\Grammars\PostgresGrammar;
 
-class DatabaseServiceProvider extends BaseProvider
+class DatabaseServiceProvider extends \Illuminate\Database\DatabaseServiceProvider
 {
     /**
      * Register the primary database bindings.
@@ -29,25 +29,31 @@ class DatabaseServiceProvider extends BaseProvider
         // connections might be managed. It also implements the connection resolver
         // interface which may be used by other components requiring connections.
         $this->app->singleton('db', function ($app) {
-            //Load the default DatabaseManager
+            // Load the default DatabaseManager
             $dbm = new DatabaseManager($app, $app['db.factory']);
 
-            //Extend to include the custom connection (Postgres only for now)
+            // Extend to include the custom connection (Postgres only for now)
             $dbm->extend('pgsql', function($config, $name) use ($app) {
-                //Create default connection from factory
+                // Create default connection from factory
                 $connection = $app['db.factory']->make($config, $name);
-                //Instantiate our connection with the default connection data
-                $new_connection = new Connection(
+                
+                // Instantiate our connection with the default connection data
+                $newConnection = new Connection(
                     $connection->getPdo(),
                     $connection->getDatabaseName(),
                     $connection->getTablePrefix(),
-                    $config
+                    $config + [
+                        'name' => $name,
+                    ]
                 );
-                //Set the appropriate grammar object
-                $new_connection->setQueryGrammar(new PostgresGrammar());
-                $new_connection->setSchemaGrammar(new SchemaGrammar());
-                return $new_connection;
+
+                // Set the appropriate grammar object
+                $newConnection->setQueryGrammar(new PostgresGrammar());
+                $newConnection->setSchemaGrammar(new SchemaGrammar());
+                
+                return $newConnection;
             });
+            
             return $dbm;
         });
 
@@ -55,5 +61,12 @@ class DatabaseServiceProvider extends BaseProvider
             return $app['db']->connection();
         });
 
+        $this->app->bind('db.schema', function ($app) {
+            return $app['db']->connection()->getSchemaBuilder();
+        });
+
+        $this->app->singleton('db.transactions', function ($app) {
+            return new DatabaseTransactionsManager;
+        });
     }
 }
